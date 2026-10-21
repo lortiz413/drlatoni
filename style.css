@@ -279,3 +279,6 @@ footer small{color:var(--slate);font-size:13px;max-width:70ch}
 .oval video,.oval img{left:50%;width:185%;height:250%;object-position:68% 40%}
 
 .oval video,.oval img{max-width:none;width:150%;height:215%;object-position:62% 40%}
+
+.oval video,.oval img{left:36%;width:172%;height:240%;object-position:60% 40%}
+@media (max-width:760px){.oval video,.oval img{left:34%}}
