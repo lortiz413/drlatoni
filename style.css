@@ -273,3 +273,5 @@ footer small{color:var(--slate);font-size:13px;max-width:70ch}
 .chap h2 sup{font-size:.32em;vertical-align:super;font-style:normal;margin-left:4px}
 .oval video,.oval img{left:44%}
 @media (max-width:980px){.exclusive .label{margin:24px 24px 0;width:max-content}}
+
+.oval video,.oval img{left:46%;width:152%;height:215%}
