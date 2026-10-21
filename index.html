@@ -7,7 +7,8 @@
 <meta name="description" content="Board certified plastic surgeon Dr. Jorge D. Latoni, MD, FACS. Cosmetic and reconstructive surgery, injectables, aesthetics, truSculpt, SmartGraft hair restoration and Narrow Band UVB in Mayagüez and Aguadilla, Puerto Rico.">
 <meta property="og:title" content="Dr. Jorge D. Latoni | Plastic Surgery & Dermatology">
 <meta property="og:image" content="img/hero_start.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='33' rx='27' ry='14' transform='rotate(-22 32 33)' fill='%23E4E8EA'/%3E%3Cpath d='M9 44C17 23 40 9 57 14C43 11 22 22 9 44Z' fill='%2381C6D8'/%3E%3Cpath d='M33 17C29 28 25 37 21 45C29 42 39 41 50 42' fill='none' stroke='%232F7F95' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -60,13 +61,12 @@ em.sky{font-style:italic;color:var(--sky-deep)}
 .nav.solid{background:rgba(247,249,250,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
 .nav .wrap{display:flex;align-items:center;gap:28px;height:84px;transition:height .4s}
 .nav.solid .wrap{height:70px}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
-.logo svg{width:64px;height:auto;flex:none}
-footer .logo svg{width:92px}
-footer .logo .lt b{font-size:32px}
-.logo .lt{display:flex;flex-direction:column;line-height:1}
-.logo .lt b{font-family:var(--display);font-weight:500;font-size:25px;letter-spacing:.16em}
-.logo .lt small{font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--slate);margin-top:5px}
+.logo{display:flex;align-items:center;flex:none;text-decoration:none}
+.logo img{height:60px;width:auto;transition:height .4s var(--ease)}
+.nav.solid .logo img{height:50px}
+@media (max-width:760px){.logo img{height:44px}.nav.solid .logo img{height:40px}}
+.flogo{display:block;width:min(240px,70%)}
+.flogo img{width:100%;height:auto}
 .menu{display:flex;gap:2px;list-style:none;margin:0 0 0 auto;padding:0}
 .menu a{display:block;padding:10px 13px;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink);opacity:.75;transition:opacity .25s}
 .menu a:hover,.menu a.on{opacity:1}
@@ -314,8 +314,6 @@ textarea{min-height:110px;resize:vertical}
 
 footer{background:var(--ink);color:rgba(255,255,255,.75);padding-block:64px calc(40px + env(safe-area-inset-bottom))}
 footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
-footer .logo{color:#fff}
-footer .logo .lt small{color:rgba(255,255,255,.6)}
 footer h4{font-family:var(--body);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:14px}
 footer a{color:#fff;text-decoration:none}
 footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:15px}
@@ -326,27 +324,28 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.14);paddin
 .fab{position:fixed;right:calc(18px + env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:40;box-shadow:0 14px 40px rgba(22,37,45,.25);transform:translateY(140%);transition:transform .5s var(--ease)}
 .fab.show{transform:none}
 
+
+/* language + facebook */
+.tools{display:flex;align-items:center;gap:10px;margin-left:8px}
+.fb{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink);border:1px solid var(--line);background:rgba(255,255,255,.6);transition:all .25s}
+.fb svg{width:18px;height:18px}
+.fb:hover{background:#1877F2;border-color:#1877F2;color:#fff}
+.lang{display:flex;padding:3px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.6)}
+.lang button{border:0;background:transparent;cursor:pointer;font:600 12px/1 var(--body);letter-spacing:.12em;padding:9px 11px;border-radius:999px;color:var(--slate);transition:all .25s}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+@media (max-width:1120px){.tools{margin-left:auto}.burger{margin-left:0}}
+@media (max-width:420px){.fb{display:none}}
+html[lang="es"] .card .ph::after{content:"Ver detalles"}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.in{opacity:1;transform:none}.js .rv:not(.vis){opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="mark" viewBox="0 0 120 84">
-      <ellipse cx="60" cy="44" rx="50" ry="25" transform="rotate(-22 60 44)" fill="#E4E8EA"/>
-      <path d="M14 64C30 26 76 2 112 12C86 6 44 24 14 64Z" fill="#81C6D8"/>
-      <path d="M64 22C57 40 49 55 41 67C55 61 73 59 94 61" fill="none" stroke="#2F7F95" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-  </defs>
-</svg>
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="Latoni Plastic Surgery and Dermatology, home">
-      <svg viewBox="0 0 120 84" aria-hidden="true"><use href="#mark"/></svg>
-      <span class="lt"><b>LATONI</b><small>Plastic Surgery &amp; Dermatology</small></span>
-    </a>
+    <a class="logo" href="#top"><img src="img/logo_horizontal.png" alt="Dr. Jorge D. Latoni M.D., F.A.C.S. Plastic Surgery" width="1400" height="256"></a>
     <ul class="menu">
       <li><a href="#doctor">Dr. Latoni</a></li>
       <li><a href="#treatments">Treatments</a></li>
@@ -355,6 +354,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.14);paddin
       <li><a href="#skin">Vitiligo</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+<div class="tools"><a class="fb" href="https://www.facebook.com/Latoni-Mercado-Plastic-Surgery-and-Dermatology-754230161371528/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21h3z"/></svg></a><div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div></div>
     <a class="btn solid desk" href="#contact">Book a consultation</a>
     <button class="burger" id="burger" aria-label="Open menu"><span></span></button>
   </div>
@@ -586,12 +586,12 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.14);paddin
 <footer>
   <div class="wrap">
     <div style="display:grid;gap:18px">
-      <a class="logo" href="#top"><svg viewBox="0 0 120 84" aria-hidden="true"><use href="#mark"/></svg><span class="lt"><b>LATONI</b><small>Plastic Surgery &amp; Dermatology</small></span></a>
+      <a class="flogo" href="#top"><img src="img/logo_full.png" alt="Dr. Jorge D. Latoni M.D., F.A.C.S. Plastic Surgery" width="1400" height="954" loading="lazy"></a>
       <p style="max-width:34ch">Dr. Jorge D. Latoni, MD, FACS. Board certified plastic surgeon serving the west of Puerto Rico.</p>
     </div>
     <div><h4>Explore</h4><ul><li><a href="#doctor">Dr. Latoni</a></li><li><a href="#treatments">Treatments</a></li><li><a href="#trusculpt">truSculpt</a></li><li><a href="#hair">Hair Restoration</a></li><li><a href="#skin">Vitiligo &amp; Psoriasis</a></li></ul></div>
     <div><h4>Call</h4><ul><li><a href="tel:+17878311000">(787) 831 1000</a></li><li><a href="tel:+17878311012">(787) 831 1012</a></li><li>Mon to Fri, 9 AM to 5 PM</li><li>By appointment only</li></ul></div>
-    <div><h4>Visit</h4><ul><li>Doctor's Center, Mayagüez</li><li>Highway 107 #160, Aguadilla</li><li><a href="https://www.facebook.com/Latoni-Mercado-Plastic-Surgery-and-Dermatology-754230161371528/" target="_blank" rel="noopener">Facebook ↗</a></li></ul></div>
+    <div><h4>Visit</h4><ul><li>Doctor's Center, Mayagüez</li><li>Highway 107 #160, Aguadilla</li><li><a href="https://www.facebook.com/Latoni-Mercado-Plastic-Surgery-and-Dermatology-754230161371528/" target="_blank" rel="noopener" style="display:inline-flex;gap:8px;align-items:center"><span style="display:inline-flex;width:18px;height:18px"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21h3z"/></svg></span>Facebook ↗</a></li></ul></div>
     <div class="legal"><span>© 2026 Latoni Plastic Surgery &amp; Dermatology. All rights reserved.</span><span>Individual results may vary. A consultation is required to determine candidacy.</span></div>
   </div>
 </footer>
@@ -602,6 +602,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.14);paddin
   <div class="dlg" id="dlgBody"></div>
   <button class="x" id="dlgX" aria-label="Close">×</button>
 </dialog>
+<script src="i18n.js"></script>
 <script>
 document.documentElement.classList.add("js");
 const T = {
@@ -660,50 +661,89 @@ const FAQ=[
 ];
 
 const $=s=>document.querySelector(s);
+const ES=window.ES||null;
+let lang="en";
+try{const q=new URLSearchParams(location.search).get("lang");const sv=localStorage.getItem("latoni_lang");lang=q||sv||((navigator.language||"").toLowerCase().startsWith("es")?"es":"en");}catch(e){}
+if(!ES) lang="en";
+const es=()=>lang==="es";
+const catL=k=>es()?ES.cats[k]:k;
+const grpL=g=>es()?(ES.groups[g]||g):g;
+function item(k,i){const x=T[k][i];if(!es())return {n:x[0],d:x[3],s:x[4],g:x[1],img:x[2]};const y=ES.T[k][i];return {n:y[0],d:y[1],s:y[2],g:x[1],img:x[2]};}
 let cat="Surgery",grp="All";
+function idxs(){return T[cat].map((x,i)=>i).filter(i=>grp==="All"||T[cat][i][1]===grp);}
 function tabs(){
-  $("#tabs").innerHTML=Object.keys(T).map(k=>`<button class="tab" role="tab" aria-selected="${k===cat}" data-k="${k}">${k}<sup>${T[k].length}</sup></button>`).join("");
+  $("#tabs").innerHTML=Object.keys(T).map(k=>`<button class="tab" role="tab" aria-selected="${k===cat}" data-k="${k}">${catL(k)}<sup>${T[k].length}</sup></button>`).join("");
   const g=["All",...new Set(T[cat].map(x=>x[1]))];
-  $("#chips").innerHTML=g.map(x=>`<button class="chip" aria-pressed="${x===grp}" data-g="${x}">${x}</button>`).join("");
+  $("#chips").innerHTML=g.map(x=>`<button class="chip" aria-pressed="${x===grp}" data-g="${x}">${grpL(x)}</button>`).join("");
 }
-function list(){return T[cat].filter(x=>grp==="All"||x[1]===grp);}
 function grid(){
-  $("#grid").innerHTML=list().map((x,i)=>`<button class="card" data-i="${i}" style="animation-delay:${i*45}ms"><div class="ph"><img src="img/${x[2]}.jpg" alt="${x[0]}" loading="lazy"></div><div class="meta"><h3>${x[0]}</h3><small>${x[1]}</small></div></button>`).join("");
+  $("#grid").innerHTML=idxs().map((i,n)=>{const it=item(cat,i);return `<button class="card" data-n="${n}" style="animation-delay:${n*45}ms"><div class="ph"><img src="img/${it.img}.jpg" alt="${it.n}" loading="lazy"></div><div class="meta"><h3>${it.n}</h3><small>${grpL(it.g)}</small></div></button>`}).join("");
 }
 $("#tabs").onclick=e=>{const b=e.target.closest(".tab");if(!b)return;cat=b.dataset.k;grp="All";tabs();grid();};
 $("#chips").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;grp=b.dataset.g;tabs();grid();};
 const dlg=$("#dlg");
-function openItem(i){
-  const L=list(), x=L[i]; if(!x) return;
-  const w=x[0].split(" "); const t=w.length>1?w.slice(0,-1).join(" ")+" <em class='sky'>"+w[w.length-1]+"</em>":"<em class='sky'>"+x[0]+"</em>";
-  $("#dlgBody").innerHTML=`<div class="im"><img src="img/${x[2]}.jpg" alt="${x[0]}"></div><div class="tx"><p class="kicker">${cat} · ${x[1]}</p><h3>${t}</h3><p>${x[3]}</p><dl class="specs">${x[4].map(s=>`<div><dt>${s[0]}</dt><dd>${s[1]}</dd></div>`).join("")}</dl><div class="nav2"><a class="btn solid" href="#contact" data-book="${x[0]}">Schedule a consultation <span class="arr">→</span></a>${i<L.length-1?`<button class="btn line" data-next="${i+1}">Next <span class="arr">→</span></button>`:""}</div></div>`;
+function openItem(n){
+  const L=idxs(); if(n>=L.length) return; const it=item(cat,L[n]); const en=T[cat][L[n]][0];
+  const w=it.n.split(" "); const t=w.length>1?w.slice(0,-1).join(" ")+" <em class='sky'>"+w[w.length-1]+"</em>":"<em class='sky'>"+it.n+"</em>";
+  $("#dlgBody").innerHTML=`<div class="im"><img src="img/${it.img}.jpg" alt="${it.n}"></div><div class="tx"><p class="kicker">${catL(cat)} · ${grpL(it.g)}</p><h3>${t}</h3><p>${it.d}</p><dl class="specs">${it.s.map(s=>`<div><dt>${s[0]}</dt><dd>${s[1]}</dd></div>`).join("")}</dl><div class="nav2"><a class="btn solid" href="#contact" data-book="${en}">${es()?ES.ui.book:"Schedule a consultation"} <span class="arr">→</span></a>${n<L.length-1?`<button class="btn line" data-next="${n+1}">${es()?ES.ui.next:"Next"} <span class="arr">→</span></button>`:""}</div></div>`;
   if(!dlg.open) dlg.showModal();
 }
-$("#grid").onclick=e=>{const b=e.target.closest(".card");if(b)openItem(+b.dataset.i);};
+$("#grid").onclick=e=>{const b=e.target.closest(".card");if(b)openItem(+b.dataset.n);};
 dlg.addEventListener("click",e=>{
   if(e.target===dlg){dlg.close();return;}
   const n=e.target.closest("[data-next]"); if(n){openItem(+n.dataset.next);return;}
   const a=e.target.closest("[data-book]"); if(a){dlg.close();}
 });
 $("#dlgX").onclick=()=>dlg.close();
-tabs();grid();
 
 const sel=$("#f-proc");
-sel.innerHTML=`<option value="">Not sure yet, I'd like guidance</option>`+Object.entries(T).map(([k,v])=>`<optgroup label="${k}">${v.map(x=>`<option>${x[0]}</option>`).join("")}</optgroup>`).join("")+`<optgroup label="Signature"><option>truSculpt</option><option>SmartGraft® Hair Restoration</option><option>Narrow Band UVB</option></optgroup>`;
+function fillSelect(){
+  const keep=sel.value;
+  sel.innerHTML=`<option value="">${es()?ES.ui.notsure:"Not sure yet, I'd like guidance"}</option>`+Object.keys(T).map(k=>`<optgroup label="${catL(k)}">${T[k].map((x,i)=>`<option value="${x[0]}">${item(k,i).n}</option>`).join("")}</optgroup>`).join("")+`<optgroup label="${es()?ES.ui.signature:"Signature"}"><option value="truSculpt">truSculpt</option><option value="SmartGraft® Hair Restoration">${es()?ES.ui.hair:"SmartGraft® Hair Restoration"}</option><option value="Narrow Band UVB">Narrow Band UVB</option></optgroup>`;
+  sel.value=keep;
+}
 document.addEventListener("click",e=>{const a=e.target.closest("[data-book]");if(a)sel.value=a.dataset.book;});
 
-const names=[...T.Surgery,...T.Injectables,...T.Aesthetics].map(x=>x[0]).concat(["truSculpt","SmartGraft®","Narrow Band UVB"]);
-const half=names.map(n=>`<span>${n}</span>`).join("");$("#mq").innerHTML=half+half;
+function marquee(){const names=Object.keys(T).flatMap(k=>T[k].map((x,i)=>item(k,i).n)).concat(["truSculpt","SmartGraft®","Narrow Band UVB"]);const half=names.map(n=>`<span>${n}</span>`).join("");$("#mq").innerHTML=half+half;}
 
 const Z=["Abdomen","Waist","Buttocks","Thighs","Arms","Upper back","Neck"],on=new Set(["Abdomen","Waist"]);
-function rz(){$("#zones").innerHTML=Z.map(z=>`<button class="zone" aria-pressed="${on.has(z)}" data-z="${z}">${z}</button>`).join("");$("#pz").textContent=on.size;}
-$("#zones").onclick=e=>{const b=e.target.closest(".zone");if(!b)return;const z=b.dataset.z;on.has(z)?on.delete(z):on.add(z);rz();};rz();
+function rz(){$("#zones").innerHTML=Z.map(z=>`<button class="zone" aria-pressed="${on.has(z)}" data-z="${z}">${es()?ES.zones[z]:z}</button>`).join("");$("#pz").textContent=on.size;}
+$("#zones").onclick=e=>{const b=e.target.closest(".zone");if(!b)return;const z=b.dataset.z;on.has(z)?on.delete(z):on.add(z);rz();};
 
-$("#faq").innerHTML=FAQ.map((f,i)=>`<details${i===0?" open":""}><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");
+function faq(){const F=es()?ES.FAQ:FAQ;$("#faq").innerHTML=F.map((f,i)=>`<details${i===0?" open":""}><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");}
 
 $("#form").addEventListener("submit",e=>{e.preventDefault();const n=$("#f-name").value.trim(),p=$("#f-phone").value.trim(),ok=$("#ok");ok.hidden=false;
-  if(!n||!p){ok.textContent="Please add your name and phone number so our team can call you.";(n?$("#f-phone"):$("#f-name")).focus();return;}
-  ok.textContent=`Thank you, ${n.split(" ")[0]}. (Design preview: once the site is live, this request goes straight to the ${document.querySelector("input[name=office]:checked").value} office.)`;});
+  if(!n||!p){ok.textContent=es()?ES.ui.missing:"Please add your name and phone number so our team can call you.";(n?$("#f-phone"):$("#f-name")).focus();return;}
+  const o=document.querySelector("input[name=office]:checked").value;
+  ok.textContent=es()?ES.ui.thanks(n.split(" ")[0],o):`Thank you, ${n.split(" ")[0]}. (Design preview: once the site is live, this request goes straight to the ${o} office.)`;});
+
+/* static text swap */
+const norm=s=>s.replace(/\s+/g," ").trim();
+const ORIG=new Map(); const EN_TITLE=document.title;
+function collect(){
+  if(!ES) return;
+  const skip="#tabs,#chips,#grid,#zones,#faq,#mq,#dlg,select,script,style";
+  document.querySelectorAll("body *").forEach(el=>{
+    if(el.closest(skip)) return;
+    if(ORIG.has(el)||[...ORIG.keys()].some(p=>p.contains(el))) return;
+    const k=norm(el.innerHTML);
+    if(ES.S[k]!==undefined) ORIG.set(el,{type:"html",en:el.innerHTML,es:ES.S[k]});
+  });
+  document.querySelectorAll("label").forEach(l=>{const t=[...l.childNodes].find(n=>n.nodeType===3&&n.textContent.trim());if(t&&ES.S[t.textContent.trim()])ORIG.set(t,{type:"text",en:t.textContent,es:ES.S[t.textContent.trim()]});});
+  document.querySelectorAll("form span").forEach(s=>{const k=norm(s.innerHTML);if(ES.S[k]&&!ORIG.has(s))ORIG.set(s,{type:"html",en:s.innerHTML,es:ES.S[k]});});
+}
+function applyLang(l){
+  lang=(l==="es"&&ES)?"es":"en";
+  try{localStorage.setItem("latoni_lang",lang);}catch(e){}
+  document.documentElement.lang=lang;
+  document.title=es()?ES.title:EN_TITLE;
+  ORIG.forEach((v,node)=>{const val=es()?v.es:v.en; if(v.type==="html") node.innerHTML=val; else node.textContent=val;});
+  const ta=$("#f-msg"); if(ta) ta.placeholder=es()?ES.ui.placeholder:"What would you like to achieve?";
+  document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===lang));
+  tabs();grid();fillSelect();marquee();rz();faq();
+}
+document.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>applyLang(b.dataset.lang)));
+collect(); applyLang(lang);
 
 const nav=$("#nav"),fab=$("#fab"),links=[...document.querySelectorAll(".menu a")],secs=links.map(a=>$(a.getAttribute("href")));
 function onS(){const y=scrollY;nav.classList.toggle("solid",y>40);fab.classList.toggle("show",y>innerHeight*.9&&$("#contact").getBoundingClientRect().top>innerHeight*.6);
