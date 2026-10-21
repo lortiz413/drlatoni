@@ -11,767 +11,204 @@
 <link rel="apple-touch-icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-/* Concept: porcelain light, the logo's sky blue as the signature, deep slate ink for contrast.
-   Hero film loop, editorial bio, image gallery explorer, signature technologies, team, contact. */
-:root{
-  --sky:#81C6D8;        /* logo blue */
-  --sky-deep:#2F7F95;   /* readable blue for text and buttons */
-  --sky-mist:#E7F4F8;
-  --oval:#E4E8EA;       /* logo gray oval */
-  --porcelain:#F7F9FA;
-  --white:#FFFFFF;
-  --ink:#16252D;
-  --slate:#5A6D76;
-  --line:#DCE5E9;
-  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
-  --body:"Jost","Avenir Next","Avenir","Helvetica Neue",Arial,sans-serif;
-  --wrap:1240px;
-  --ease:cubic-bezier(.2,.7,.2,1);
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--porcelain);color:var(--ink);font-family:var(--body);font-weight:400;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img,video{display:block;max-width:100%}
-a{color:inherit}
-h1,h2,h3,h4{font-family:var(--display);font-weight:400;margin:0;line-height:1.04;text-wrap:balance;letter-spacing:-.01em}
-p{margin:0}
-.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
-.kicker{font-family:var(--body);font-size:12.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--sky-deep)}
-.lede{font-size:clamp(17px,1.5vw,20px);color:var(--slate);font-weight:300;max-width:60ch}
-em.sky{font-style:italic;color:var(--sky-deep)}
-:focus-visible{outline:2px solid var(--sky-deep);outline-offset:3px;border-radius:4px}
-
-/* buttons */
-.btn{display:inline-flex;align-items:center;gap:12px;font:500 14px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:18px 28px;border-radius:999px;border:0;cursor:pointer;transition:transform .35s var(--ease),background .35s,color .35s,box-shadow .35s}
-.btn .arr{display:inline-block;transition:transform .35s var(--ease)}
-.btn:hover .arr{transform:translateX(5px)}
-.btn.solid{background:var(--ink);color:#fff}
-.btn.solid:hover{background:var(--sky-deep)}
-.btn.sky{background:var(--sky);color:var(--ink)}
-.btn.sky:hover{background:#fff}
-.btn.line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
-.btn.line:hover{background:var(--ink);color:#fff}
-.btn.ghost{background:rgba(255,255,255,.55);color:var(--ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.btn.ghost:hover{background:#fff}
-
-/* nav */
-.nav{position:fixed;inset:0 0 auto;z-index:50;padding-top:env(safe-area-inset-top);transition:background .4s,box-shadow .4s}
-.nav.solid{background:rgba(247,249,250,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
-.nav .wrap{display:flex;align-items:center;gap:28px;height:84px;transition:height .4s}
-.nav.solid .wrap{height:70px}
-.logo{display:flex;align-items:center;flex:none;text-decoration:none}
-.logo img{height:60px;width:auto;transition:height .4s var(--ease)}
-.nav.solid .logo img{height:50px}
-@media (max-width:760px){.logo img{height:44px}.nav.solid .logo img{height:40px}}
-.flogo{display:block;width:min(240px,70%)}
-.flogo img{width:100%;height:auto}
-.menu{display:flex;gap:2px;list-style:none;margin:0 0 0 auto;padding:0}
-.menu a{display:block;padding:10px 13px;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink);opacity:.75;transition:opacity .25s}
-.menu a:hover,.menu a.on{opacity:1}
-.menu a.on{color:var(--sky-deep)}
-.nav .btn{padding:13px 20px;font-size:12px}
-.burger{display:none;margin-left:auto;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;align-items:center;justify-content:center}
-.burger span{display:block;width:18px;height:1.5px;background:var(--ink);position:relative}
-.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:var(--ink)}
-.burger span::before{top:-6px}.burger span::after{top:6px}
-.drawer{position:fixed;inset:0;z-index:60;background:var(--porcelain);padding:110px 28px 40px;display:flex;flex-direction:column;gap:6px;transform:translateY(-100%);transition:transform .55s var(--ease)}
-.drawer.open{transform:none}
-.drawer a{font-family:var(--display);font-size:34px;text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line)}
-.drawer .close{position:absolute;top:calc(22px + env(safe-area-inset-top));right:20px}
-@media (max-width:1120px){.menu,.nav .btn.desk{display:none}.burger{display:flex}}
-
-/* hero */
-.hero{position:relative;height:min(100svh,980px);min-height:640px;overflow:hidden;background:#EEF2F3}
-.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(247,249,250,.9) 0%,rgba(247,249,250,.55) 34%,rgba(247,249,250,0) 60%)}
-.hero .wrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;gap:28px;padding-top:84px}
-.hero h1{font-size:clamp(50px,7.6vw,112px);max-width:9.5ch}
-.hero h1 em{font-style:italic;color:var(--sky-deep)}
-.hero .lede{color:var(--ink);opacity:.8;max-width:44ch}
-.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
-.hero .cred{display:flex;align-items:center;gap:14px;font-size:13px;letter-spacing:.06em;color:var(--slate)}
-.hero .cred i{width:42px;height:1px;background:var(--sky-deep)}
-.scrollcue{position:absolute;z-index:2;left:50%;bottom:calc(26px + env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--slate);text-decoration:none}
-.scrollcue span{width:1px;height:44px;background:linear-gradient(var(--sky-deep),transparent);animation:cue 2.2s var(--ease) infinite;transform-origin:top}
-@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
-.in{opacity:0;transform:translateY(26px);animation:in 1.1s var(--ease) forwards}
-.in.d1{animation-delay:.15s}.in.d2{animation-delay:.3s}.in.d3{animation-delay:.45s}.in.d4{animation-delay:.6s}
-@keyframes in{to{opacity:1;transform:none}}
-@media (max-width:760px){
-  .hero{height:auto;min-height:0}
-  .hero video,.hero .poster{position:relative;height:56vw;min-height:260px;object-position:72% 40%}
-  .hero::after{display:none}
-  .hero .wrap{padding-top:28px;padding-bottom:52px;background:var(--porcelain)}
-  .hero-media{padding-top:76px}
-  .scrollcue{display:none}
-}
-
-/* marquee */
-.marquee{background:var(--ink);color:#fff;overflow:hidden;padding:20px 0;white-space:nowrap}
-.marquee .track{display:inline-flex;gap:46px;animation:mq 60s linear infinite;padding-left:46px}
-.marquee span{font-family:var(--display);font-style:italic;font-size:24px;display:inline-flex;align-items:center;gap:46px}
-.marquee span::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--sky)}
-@keyframes mq{to{transform:translateX(-50%)}}
-
-section{scroll-margin-top:70px}
-.sec{padding-block:clamp(84px,10vw,150px)}
-.head{display:grid;gap:18px;margin-bottom:clamp(40px,5vw,64px);max-width:820px}
-.head h2{font-size:clamp(42px,5.8vw,82px)}
-.head h2 em{font-style:italic;color:var(--sky-deep)}
-
-/* reveal */
-.rv{transition:opacity 1s var(--ease),transform 1s var(--ease)}
-.js .rv:not(.vis){opacity:0;transform:translateY(34px)}
-
-/* doctor */
-.doc{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(36px,6vw,96px);align-items:center}
-.portrait{position:relative}
-.portrait .frame{position:relative;border-radius:240px 240px 18px 18px;overflow:hidden;aspect-ratio:4/5;background:var(--oval)}
-.portrait img{width:100%;height:100%;object-fit:cover}
-.portrait .oval{position:absolute;inset:-6% -10% auto auto;width:62%;aspect-ratio:2/1;border-radius:50%;border:1.5px solid var(--sky);transform:rotate(-22deg);pointer-events:none}
-.portrait .pcard{position:absolute;left:-18px;bottom:28px;background:#fff;border-radius:14px;padding:18px 22px;box-shadow:0 20px 50px rgba(22,37,45,.12);display:grid;gap:2px}
-.portrait .pcard b{font-family:var(--display);font-size:22px;font-weight:500}
-.portrait .pcard span{font-size:13px;color:var(--slate);letter-spacing:.04em}
-.doc-copy{display:grid;gap:24px;min-width:0}
-.doc-copy h2{font-size:clamp(40px,5.2vw,74px)}
-.doc-copy p{color:var(--slate);max-width:58ch}
-.boards{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);margin-top:8px}
-.boards div{padding:18px 18px 18px 0;border-bottom:1px solid var(--line);display:grid;gap:3px}
-.boards div:nth-child(even){padding-left:18px;border-left:1px solid var(--line)}
-.boards small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--sky-deep);font-weight:500}
-.boards span{font-size:15.5px;line-height:1.35}
-.train{margin-top:clamp(64px,8vw,110px);display:grid;grid-template-columns:repeat(6,1fr);position:relative}
-.train::before{content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:var(--line)}
-.train div{position:relative;padding:34px 18px 0 0}
-.train div::before{content:"";position:absolute;top:3px;left:0;width:13px;height:13px;border-radius:50%;background:var(--porcelain);border:2px solid var(--sky)}
-.train div:last-child::before{background:var(--sky)}
-.train b{display:block;font-family:var(--display);font-size:21px;font-weight:500;line-height:1.15}
-.train span{display:block;font-size:14px;color:var(--slate);margin-top:6px}
-.affil{display:flex;flex-wrap:wrap;gap:10px;margin-top:56px}
-.affil span{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;padding:11px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--slate)}
-@media (max-width:900px){.doc{grid-template-columns:1fr}.portrait{max-width:520px}.train{grid-template-columns:1fr;gap:22px}.train::before{left:6px;right:auto;top:0;bottom:0;width:1px;height:auto}.train div{padding:0 0 0 34px}.boards{grid-template-columns:1fr}.boards div:nth-child(even){padding-left:0;border-left:0}.portrait .pcard{left:12px}}
-
-/* stats */
-.stats{background:var(--sky-mist)}
-.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding-block:56px}
-.stats div{padding:6px 24px;border-left:1px solid rgba(47,127,149,.25);display:grid;gap:4px}
-.stats div:first-child{border-left:0;padding-left:0}
-.stats strong{font-family:var(--display);font-weight:400;font-size:clamp(46px,5vw,72px);line-height:1;color:var(--ink);font-variant-numeric:lining-nums}
-.stats span{font-size:14px;color:var(--slate);letter-spacing:.02em;max-width:22ch}
-@media (max-width:820px){.stats .wrap{grid-template-columns:1fr 1fr;row-gap:34px}.stats div:nth-child(3){border-left:0;padding-left:0}}
-
-/* treatments */
-.treat{background:#fff}
-.tabbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px;border-bottom:1px solid var(--line);margin-bottom:22px}
-.tab{background:none;border:0;cursor:pointer;font-family:var(--display);font-size:clamp(26px,3vw,40px);color:var(--slate);padding:6px 0 16px;position:relative;opacity:.55;transition:opacity .3s,color .3s}
-.tab sup{font-family:var(--body);font-size:12px;letter-spacing:.1em;margin-left:6px;color:var(--sky-deep)}
-.tab::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--sky-deep);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
-.tab[aria-selected="true"]{opacity:1;color:var(--ink)}
-.tab[aria-selected="true"]::after{transform:none}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
-.chip{font:500 12.5px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:12px 18px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--slate);cursor:pointer;transition:all .25s}
-.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
-.card{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:14px;animation:cardin .7s var(--ease) both}
-@keyframes cardin{from{opacity:0;transform:translateY(18px)}}
-.card .ph{position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:var(--oval)}
-.card img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.card:hover img{transform:scale(1.06)}
-.card .ph::after{content:"View details";position:absolute;left:14px;bottom:14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.88);color:var(--ink);opacity:0;transform:translateY(8px);transition:all .4s var(--ease)}
-.card:hover .ph::after,.card:focus-visible .ph::after{opacity:1;transform:none}
-.card .meta{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.card h3{font-size:24px;line-height:1.1}
-.card small{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky-deep);white-space:nowrap}
-.card:focus-visible{outline:2px solid var(--sky-deep);outline-offset:6px;border-radius:14px}
-@media (max-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card h3{font-size:19px}.card small{display:none}}
-
-/* dialog */
-dialog{border:0;padding:0;border-radius:22px;max-width:min(1040px,94vw);width:100%;background:#fff;color:var(--ink);box-shadow:0 40px 120px rgba(22,37,45,.35)}
-dialog::backdrop{background:rgba(22,37,45,.55);backdrop-filter:blur(6px)}
-dialog[open]{animation:pop .5s var(--ease)}
-@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.98)}}
-.dlg{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);max-height:88vh}
-.dlg .im{background:var(--oval);min-height:420px}
-.dlg .im img{width:100%;height:100%;object-fit:cover}
-.dlg .tx{padding:clamp(28px,4vw,52px);display:grid;gap:20px;align-content:center;overflow:auto}
-.dlg h3{font-size:clamp(36px,4vw,54px)}
-.dlg p{color:var(--slate);font-size:17px}
-.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.specs div{padding:14px 16px;display:grid;gap:2px;border-right:1px solid var(--line)}
-.specs div:last-child{border-right:0}
-.specs dt{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--sky-deep);font-weight:500}
-.specs dd{margin:0;font-weight:500;font-size:16px}
-.dlg .x,#dlgX{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.12);cursor:pointer;font-size:20px;line-height:1}
-.dlg .nav2{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-@media (max-width:760px){.dlg{grid-template-columns:1fr;max-height:90vh;overflow:auto}.dlg .im{min-height:0;aspect-ratio:4/3}}
-
-/* signature: trusculpt */
-.sig{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(36px,6vw,90px);align-items:start}
-.sig .media{position:sticky;top:96px;border-radius:18px;overflow:hidden;aspect-ratio:16/11;background:var(--oval)}
-.sig .media img{width:100%;height:100%;object-fit:cover}
-.sig .media .tag{position:absolute;left:18px;top:18px;background:#fff;border-radius:999px;padding:11px 16px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;display:flex;gap:10px;align-items:center}
-.sig .media .tag i{width:8px;height:8px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 4px var(--sky-mist)}
-.sig .copy{display:grid;gap:26px;min-width:0}
-.sig h2{font-size:clamp(46px,6vw,88px)}
-.steps{list-style:none;margin:0;padding:0;counter-reset:s}
-.steps li{counter-increment:s;display:grid;grid-template-columns:64px 1fr;gap:10px;padding:20px 0;border-bottom:1px solid var(--line)}
-.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--display);font-style:italic;font-size:30px;color:var(--sky-deep);line-height:1}
-.steps b{display:block;font-weight:500;font-size:17px}
-.steps span{color:var(--slate);font-size:15.5px}
-.planner{background:var(--porcelain);border-radius:18px;padding:26px;display:grid;gap:18px}
-.planner h3{font-size:28px}
-.zones{display:flex;flex-wrap:wrap;gap:8px}
-.zone{font:500 13px/1 var(--body);letter-spacing:.08em;padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;transition:all .25s}
-.zone[aria-pressed="true"]{background:var(--sky);border-color:var(--sky)}
-.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.plan div{background:#fff;border-radius:12px;padding:14px;display:grid;gap:2px}
-.plan strong{font-family:var(--display);font-size:30px;font-weight:400;line-height:1.1}
-.plan span{font-size:12.5px;color:var(--slate)}
-.feel{display:flex;flex-wrap:wrap;gap:8px}
-.feel span{font-size:13.5px;padding:8px 14px;border-radius:8px;background:var(--sky-mist)}
-.quote{font-family:var(--display);font-style:italic;font-size:22px;line-height:1.4;padding-left:20px;border-left:2px solid var(--sky)}
-@media (max-width:900px){.sig{grid-template-columns:1fr}.sig .media{position:relative;top:0}.plan{grid-template-columns:1fr 1fr 1fr}}
-
-/* hair */
-.hair{background:var(--ink);color:#fff;overflow:hidden}
-.hair .kicker{color:var(--sky)}
-.hair .lede{color:rgba(255,255,255,.72)}
-.hair .head h2 em{color:var(--sky)}
-.hair-hero{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:21/9;margin-bottom:clamp(40px,5vw,72px);background:#22343c}
-.hair-hero img{width:100%;height:100%;object-fit:cover;object-position:70% 30%}
-.hair-hero .over{position:absolute;inset:auto 0 0 0;padding:28px;background:linear-gradient(transparent,rgba(22,37,45,.75));display:flex;align-items:end;gap:16px;flex-wrap:wrap}
-.hair-hero .over b{font-family:var(--display);font-size:clamp(26px,3vw,40px);font-weight:400}
-.hair-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(36px,6vw,90px)}
-.hair-grid p+p{margin-top:16px}
-.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
-.cmp>div{border-radius:16px;padding:24px;display:grid;gap:14px;align-content:start;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
-.cmp>div.win{background:var(--sky);color:var(--ink);border-color:var(--sky)}
-.cmp h3{font-size:24px}
-.cmp .big{font-family:var(--display);font-size:clamp(46px,5vw,66px);line-height:1}
-.cmp .big small{font-family:var(--body);font-size:14px;margin-left:8px;opacity:.75}
-.cmp ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px}
-.cmp li{padding-left:18px;position:relative}
-.cmp li::before{content:"";position:absolute;left:0;top:11px;width:9px;height:1px;background:currentColor}
-.faq details{border-bottom:1px solid rgba(255,255,255,.16)}
-.faq details:first-child{border-top:1px solid rgba(255,255,255,.16)}
-.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:22px 0;font-family:var(--display);font-size:clamp(20px,2vw,25px)}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--body);font-weight:300;font-size:28px;color:var(--sky);transition:transform .35s var(--ease);flex:none}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq details p{padding:0 0 24px;color:rgba(255,255,255,.72);max-width:64ch}
-@media (max-width:900px){.hair-grid,.cmp{grid-template-columns:1fr}.hair-hero{aspect-ratio:4/3}}
-
-/* uvb */
-.uvb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(36px,6vw,90px);align-items:center}
-.uvb .media{border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--oval)}
-.uvb .media img{width:100%;height:100%;object-fit:cover;object-position:60% 40%}
-.uvb .copy{display:grid;gap:22px}
-.uvb h2{font-size:clamp(40px,5.2vw,72px)}
-.badge{display:inline-flex;gap:10px;align-items:center;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:11px 16px;border-radius:999px;background:var(--sky-mist);color:var(--sky-deep);width:max-content;max-width:100%}
-.spectrum{display:grid;gap:10px;margin-top:6px}
-.spectrum .bar{height:12px;border-radius:999px;background:linear-gradient(90deg,#4b2a8a,#5f45c9 16%,#4f7fe0 32%,#47b6cf 48%,#78c96e 62%,#e2d24f 76%,#e48b3d 88%,#cf4c3f);position:relative}
-.spectrum .bar i{position:absolute;top:-7px;bottom:-7px;left:8%;width:5%;border:2px solid var(--ink);border-radius:6px;background:rgba(255,255,255,.2)}
-.spectrum .lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--slate);letter-spacing:.06em}
-@media (max-width:900px){.uvb{grid-template-columns:1fr}}
-
-/* team */
-.team figure{margin:0;border-radius:20px;overflow:hidden;background:var(--oval)}
-.team img{width:100%;aspect-ratio:16/8;object-fit:cover;object-position:50% 30%}
-@media (max-width:700px){.team img{aspect-ratio:4/3}}
-
-/* contact */
-.contact{background:#fff}
-.ct{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,70px);align-items:start}
-.phones{display:flex;flex-wrap:wrap;gap:12px 24px}
-.phones a{font-family:var(--display);font-size:clamp(28px,3vw,40px);text-decoration:none;border-bottom:1px solid var(--sky);padding-bottom:2px;font-variant-numeric:lining-nums}
-.phones a:hover{color:var(--sky-deep)}
-.hours{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;padding:20px 0;border-block:1px solid var(--line);margin:26px 0}
-.hours b{font-family:var(--display);font-weight:400;font-size:24px}
-.hours span{color:var(--slate)}
-.locs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.loc{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--porcelain);display:grid}
-.loc iframe{width:100%;height:190px;border:0;filter:grayscale(.35) contrast(.95)}
-.loc .in2{padding:18px 20px;display:grid;gap:6px}
-.loc h3{font-size:28px}
-.loc address{font-style:normal;color:var(--slate);font-size:15px}
-.loc a{color:var(--sky-deep);font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
-form{background:var(--porcelain);border-radius:20px;padding:clamp(24px,3.5vw,44px);display:grid;gap:16px}
-form h3{font-size:clamp(30px,3vw,42px)}
-form p.sub{color:var(--slate);font-size:15px;margin-top:-6px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-label{display:grid;gap:7px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--slate)}
-input,select,textarea{font:400 16px/1.4 var(--body);letter-spacing:0;text-transform:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;width:100%;transition:border-color .25s,box-shadow .25s}
-input:focus,select:focus,textarea:focus{outline:0;border-color:var(--sky-deep);box-shadow:0 0 0 4px var(--sky-mist)}
-textarea{min-height:110px;resize:vertical}
-.seg{display:flex;gap:8px}
-.seg label{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;color:var(--ink);letter-spacing:.1em}
-.seg input{width:auto;accent-color:var(--sky-deep)}
-.ok{padding:16px 18px;border-radius:12px;background:var(--sky-mist);font-size:15px}
-@media (max-width:900px){.ct,.row,.locs{grid-template-columns:1fr}}
-
-footer{background:var(--ink);color:rgba(255,255,255,.75);padding-block:64px calc(40px + env(safe-area-inset-bottom))}
-footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
-footer h4{font-family:var(--body);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:14px}
-footer a{color:#fff;text-decoration:none}
-footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:15px}
-footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.14);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px}
-@media (max-width:900px){footer .wrap{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){footer .wrap{grid-template-columns:1fr}}
-
-.fab{position:fixed;right:calc(18px + env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:40;box-shadow:0 14px 40px rgba(22,37,45,.25);transform:translateY(140%);transition:transform .5s var(--ease)}
-.fab.show{transform:none}
-
-
-
-
-/* hero kept inside the page column on wide screens */
-@media (min-width:761px){
-  .hero{background:var(--porcelain)}
-  .hero-media{position:absolute;inset:0;left:max(0px,calc(50% - 860px));right:max(0px,calc(50% - 860px))}
-  .hero::after{left:max(0px,calc(50% - 860px));right:max(0px,calc(50% - 860px))}
-  .hero .wrap{max-width:1440px}
-}
-@media (min-width:1721px){
-  .hero-media{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 10%,#000 90%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 10%,#000 90%,transparent 100%)}
-}
-
-/* nav fit */
-.nav .wrap{max-width:1440px;gap:18px}
-.menu a,.nav .btn{white-space:nowrap}
-.menu a{padding:10px 10px;font-size:12.5px}
-@media (max-width:1380px){.nav .btn.desk{display:none}}
-
-/* language + facebook */
-.tools{display:flex;align-items:center;gap:10px;margin-left:8px}
-.fb{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink);border:1px solid var(--line);background:rgba(255,255,255,.6);transition:all .25s}
-.fb svg{width:18px;height:18px}
-.fb:hover{background:#1877F2;border-color:#1877F2;color:#fff}
-.lang{display:flex;padding:3px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.6)}
-.lang button{border:0;background:transparent;cursor:pointer;font:600 12px/1 var(--body);letter-spacing:.12em;padding:9px 11px;border-radius:999px;color:var(--slate);transition:all .25s}
-.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
-@media (max-width:1120px){.tools{margin-left:auto}.burger{margin-left:0}}
-@media (max-width:420px){.fb{display:none}}
-html[lang="es"] .card .ph::after{content:"Ver detalles"}
-
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.in{opacity:1;transform:none}.js .rv:not(.vis){opacity:1;transform:none}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
-
-<header class="nav" id="nav">
-  <div class="wrap">
-    <a class="logo" href="#top"><img src="img/logo_horizontal.png" alt="Dr. Jorge D. Latoni M.D., F.A.C.S. Plastic Surgery" width="1400" height="256"></a>
-    <ul class="menu">
-      <li><a href="#doctor">Dr. Latoni</a></li>
-      <li><a href="#treatments">Treatments</a></li>
-      <li><a href="#trusculpt">truSculpt</a></li>
-      <li><a href="#hair">Hair</a></li>
-      <li><a href="#skin">Vitiligo</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-<div class="tools"><a class="fb" href="https://www.facebook.com/Latoni-Mercado-Plastic-Surgery-and-Dermatology-754230161371528/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21h3z"/></svg></a><div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div></div>
-    <a class="btn solid desk" href="#contact">Book a consultation</a>
-    <button class="burger" id="burger" aria-label="Open menu"><span></span></button>
+<aside class="rail" aria-label="Site">
+  <a class="mark" href="#top" aria-label="Dr. Jorge D. Latoni, home"><img src="img/logo_mark.png" alt="" width="600" height="426"></a>
+  <nav aria-label="Sections">
+    <a href="#contact" data-es="Contacto">Contact</a>
+    <a href="#team" data-es="Equipo">Team</a>
+    <a href="#exclusive" data-es="Exclusivos">Exclusive</a>
+    <a href="#treatments" data-es="Tratamientos">Treatments</a>
+    <a href="#doctor">Dr. Latoni</a>
+  </nav>
+  <div class="bottom">
+    <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
+    <a class="fb" href="https://www.facebook.com/Latoni-Mercado-Plastic-Surgery-and-Dermatology-754230161371528/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21h3z"/></svg></a>
   </div>
-</header>
-<nav class="drawer" id="drawer" aria-label="Mobile">
-  <button class="burger close" id="close" aria-label="Close menu" style="display:flex;font-size:22px;line-height:1">×</button>
-  <a href="#doctor">Dr. Latoni</a><a href="#treatments">Treatments</a><a href="#trusculpt">truSculpt</a><a href="#hair">Hair Restoration</a><a href="#skin">Vitiligo &amp; Psoriasis</a><a href="#team">Our Team</a><a href="#contact">Contact</a>
-  <a class="btn solid" href="tel:+17878311000" style="font-family:var(--body);font-size:14px;margin-top:22px;justify-content:center;border:0">Call (787) 831 1000</a>
-</nav>
+</aside>
+
+<div class="book"><a class="tel" href="tel:+17878311000">(787) 831 1000</a><a class="cta" href="#contact" data-es="Haz tu cita">Book a consultation</a></div>
 
 <main id="top">
-<section class="hero" aria-label="Welcome">
-  <div class="hero-media">
-    <video class="poster" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="img/hero_start.jpg" aria-hidden="true">
-      <source src="img/hero_loop_mobile.mp4" type="video/mp4" media="(max-width: 760px)">
-      <source src="img/hero_loop.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="wrap">
-    <p class="kicker in">Dr. Jorge D. Latoni, MD, FACS</p>
-    <h1 class="in d1">Trust us with your <em>health</em> and <em>beauty.</em></h1>
-    <p class="lede in d2">Board certified plastic surgery, injectables, advanced skin care and technologies found nowhere else in Puerto Rico. In Mayagüez and Aguadilla.</p>
-    <div class="ctas in d3">
-      <a class="btn solid" href="#contact">Schedule your consultation <span class="arr">→</span></a>
-      <a class="btn ghost" href="#treatments">Explore treatments</a>
+
+<section class="hero pad" aria-label="Welcome">
+  <img class="flogo up" src="img/logo_full.png" alt="Dr. Jorge D. Latoni M.D., F.A.C.S. Plastic Surgery" width="1400" height="954">
+  <div class="stage">
+    <div class="oval">
+      <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="img/hero_start.jpg" aria-hidden="true">
+        <source src="img/hero_loop_mobile.mp4" type="video/mp4" media="(max-width: 760px)">
+        <source src="img/hero_loop.mp4" type="video/mp4">
+      </video>
     </div>
-    <p class="cred in d4"><i></i>American Board of Plastic Surgery · American Board of Otolaryngology</p>
+    <svg class="swoosh" viewBox="0 0 1000 470" preserveAspectRatio="none" aria-hidden="true"><path d="M70 420 C 230 120, 640 -40, 960 70"/></svg>
   </div>
-  <a class="scrollcue" href="#doctor">Scroll<span></span></a>
+  <h1 class="up d1" data-es="Confía en nosotros tu <em>salud</em> y tu <em>belleza.</em>">Trust us with your <em>health</em> and <em>beauty.</em></h1>
+  <p class="sub up d2" data-es="Cirugía plástica certificada, inyectables, cuidado avanzado de la piel y tecnologías que no encontrarás en ningún otro lugar de Puerto Rico. En Mayagüez y Aguadilla.">Board certified plastic surgery, injectables, advanced skin care and technologies found nowhere else in Puerto Rico. In Mayagüez and Aguadilla.</p>
+  <div class="ctas up d3">
+    <a class="btn dark" href="#contact" data-es="Haz tu cita">Schedule your consultation</a>
+    <a class="btn ring" href="#treatments" data-es="Ver tratamientos">Explore treatments</a>
+  </div>
+  <div class="creds up d3"><span>American Board of Plastic Surgery</span><span>American Board of Otolaryngology</span><span>F.A.C.S.</span></div>
 </section>
 
-<div class="marquee" aria-hidden="true"><div class="track" id="mq"></div></div>
-
-<section id="doctor" class="sec">
-  <div class="wrap">
-    <div class="doc">
-      <div class="portrait rv">
-        <div class="frame"><img src="img/doctor.jpg" alt="Dr. Jorge D. Latoni in his white coat" loading="lazy"></div>
-        <div class="oval"></div>
-        <div class="pcard"><b>18+ years</b><span>of dedicated, ethical practice</span></div>
-      </div>
-      <div class="doc-copy rv">
-        <p class="kicker">Meet Dr. Latoni</p>
-        <h2>Modern technique. <em class="sky">Human</em> care.</h2>
-        <p class="lede" style="color:var(--ink);opacity:.82">Dr. Jorge Latoni is certified by the American Board of Plastic Surgery and the American Board of Otolaryngology, a member of the American Society of Plastic Surgeons and a Fellow of the American College of Surgeons.</p>
-        <p>For more than 18 years he has distinguished himself by offering the most modern cosmetic plastic surgery techniques and high impact aesthetic procedures. His specialties include breast augmentation, lift and reduction; abdominoplasty; liposuction; facelifts; and nose, ear and eyelid surgery. A highly trained, certified and experienced professional, he treats every patient with empathy and care.</p>
-        <div class="boards">
-          <div><small>Certified</small><span>American Board of Plastic Surgery</span></div>
-          <div><small>Certified</small><span>American Board of Otolaryngology</span></div>
-          <div><small>Member</small><span>American Society of Plastic Surgeons</span></div>
-          <div><small>Fellow</small><span>American College of Surgeons</span></div>
-        </div>
-        <div><a class="btn line" href="#contact">Meet him in consultation <span class="arr">→</span></a></div>
-      </div>
+<section id="doctor" class="profile">
+  <div class="ph"><img src="img/doctor.jpg" alt="Dr. Jorge D. Latoni" loading="lazy"><span class="tag" data-es="Más de 18 años de práctica">18+ years of practice</span></div>
+  <div class="txt">
+    <p class="eyebrow rv" data-es="Conoce al doctor">Meet the doctor</p>
+    <h2 class="rv" data-es="Técnica moderna, <em>trato humano.</em>">Modern technique, <em>human care.</em></h2>
+    <p class="lead dropcap rv" data-es="El doctor Jorge Latoni está certificado por el American Board of Plastic Surgery y el American Board of Otolaryngology. Además, es socio de la American Society of Plastic Surgeons y Fellow del American College of Surgeons.">Dr. Jorge Latoni is certified by the American Board of Plastic Surgery and the American Board of Otolaryngology. He is a member of the American Society of Plastic Surgeons and a Fellow of the American College of Surgeons.</p>
+    <p class="muted rv" data-es="Por más de 18 años de práctica médica seria y ética, el doctor Latoni se ha destacado en ofrecer las técnicas más modernas de cirugía plástica y procedimientos estéticos de alto impacto. Se especializa en aumento, levantamiento y reducción de senos, abdominoplastia, liposucción, levantamiento facial y cirugía de párpados, nariz y orejas. Este profesional altamente adiestrado, certificado y experimentado ofrece sus servicios con esmero y empatía hacia el paciente.">With more than 18 years of dedicated and ethical practice, Dr. Latoni has distinguished himself by offering the most modern cosmetic plastic surgery techniques and high impact aesthetic procedures. His specialties include breast augmentation, lift and reduction; abdominoplasty; liposuction; facelifts; and nose, ear and eyelid surgery. A highly trained, certified and experienced professional, he treats every patient with empathy and care.</p>
+    <div class="sig rv">Jorge D. Latoni<small>M.D., F.A.C.S.</small></div>
+    <ul class="dip rv">
+      <li><b data-es="Certificado">Certified</b><span>American Board of Plastic Surgery</span></li>
+      <li><b data-es="Certificado">Certified</b><span>American Board of Otolaryngology</span></li>
+      <li><b data-es="Socio">Member</b><span>American Society of Plastic Surgeons</span></li>
+      <li><b>Fellow</b><span>American College of Surgeons</span></li>
+    </ul>
+    <p class="eyebrow rv" data-es="Su formación">His training</p>
+    <div class="path rv">
+      <div><b>Baylor University</b><span data-es="Bachillerato">Undergraduate studies</span></div>
+      <div><b>Wayne State University</b><span data-es="Grado en medicina, Detroit, Michigan">Doctor of Medicine, Detroit, Michigan</span></div>
+      <div><b data-es="Otorrinolaringología">Otolaryngology</b><span data-es="Internado en cirugía general y residencia de cuatro años">General surgery internship and four year residency</span></div>
+      <div><b>Medical College of Wisconsin</b><span data-es="Residencia en cirugía plástica">Plastic surgery residency</span></div>
+      <div><b>Tulane University</b><span data-es="Un año de residencia, Nueva Orleans">One year residency, New Orleans</span></div>
+      <div><b data-es="Fellowship craneofacial">Craniofacial fellowship</b><span data-es="Con el Dr. Anthony Wolfe en Miami">With Dr. Anthony Wolfe in Miami</span></div>
     </div>
-
-    <div class="train rv" aria-label="Training">
-      <div><b>Baylor University</b><span>Undergraduate studies</span></div>
-      <div><b>Wayne State University</b><span>Doctor of Medicine, Detroit, Michigan</span></div>
-      <div><b>Otolaryngology</b><span>General surgery internship and four year residency</span></div>
-      <div><b>Medical College of Wisconsin</b><span>Plastic surgery residency</span></div>
-      <div><b>Tulane University</b><span>One year residency, New Orleans</span></div>
-      <div><b>Craniofacial fellowship</b><span>With Dr. Anthony Wolfe in Miami</span></div>
-    </div>
-    <div class="affil rv" aria-label="Affiliations">
-      <span>American Board of Plastic Surgery</span><span>American Board of Otolaryngology</span><span>American Society of Plastic Surgeons</span><span>American College of Surgeons</span><span>Skin Cancer Foundation</span><span>Sociedad de Cirugía Plástica de Puerto Rico</span>
-    </div>
+    <p class="affil rv">American Board of Plastic Surgery<i>/</i>American Board of Otolaryngology<i>/</i>American Society of Plastic Surgeons<i>/</i>American College of Surgeons<i>/</i>Skin Cancer Foundation<i>/</i>Sociedad de Cirugía Plástica de Puerto Rico</p>
+    <div class="rv"><a class="btn dark" href="#contact" data-es="Conócelo en consulta">Meet him in consultation</a></div>
   </div>
 </section>
 
-<div class="stats">
-  <div class="wrap">
-    <div class="rv"><strong>18+</strong><span>Years of medical practice</span></div>
-    <div class="rv"><strong>37</strong><span>Surgical, injectable and aesthetic treatments</span></div>
-    <div class="rv"><strong>2</strong><span>Technologies you'll find only here in Puerto Rico</span></div>
-    <div class="rv"><strong>2</strong><span>Offices on the west coast, Mayagüez and Aguadilla</span></div>
-  </div>
-</div>
-
-<section id="treatments" class="sec treat">
-  <div class="wrap">
-    <div class="head rv">
-      <p class="kicker">Treatments</p>
-      <h2>Every procedure, <em>tailored to you.</em></h2>
-      <p class="lede">Explore surgery, injectables and aesthetic care. Tap any treatment to see what it does, how long it takes and what recovery looks like.</p>
+<section id="treatments" class="index">
+  <div class="pad" style="max-width:1500px;margin:0 auto">
+    <div class="top">
+      <h2 class="rv" data-es="El <em>índice</em>">The <em>index</em></h2>
+      <p class="muted rv" data-es="37 tratamientos de cirugía, inyectables y estética. Toca cualquiera para ver en qué consiste, cuánto dura y cómo es la recuperación.">37 surgical, injectable and aesthetic treatments. Tap any one to see what it does, how long it takes and what recovery looks like.</p>
     </div>
-    <div class="tabbar" role="tablist" id="tabs"></div>
-    <div class="chips" id="chips"></div>
-    <div class="grid" id="grid"></div>
+    <div class="cols" id="cols"></div>
   </div>
 </section>
 
-<section id="trusculpt" class="sec">
-  <div class="wrap sig">
-    <div class="media rv">
-      <img src="img/s_trusculpt.jpg" alt="truSculpt body contouring treatment on the abdomen" loading="lazy">
-      <span class="tag"><i></i>The only one in Puerto Rico</span>
-    </div>
-    <div class="copy rv">
-      <p class="kicker">Noninvasive body sculpting</p>
-      <h2>tru<em class="sky">Sculpt</em></h2>
-      <p class="lede">A new figure in about three months for men and women, without needles, bruising, incisions or surgery.</p>
-      <p style="color:var(--slate)">The technology works beneath the surface, so it doesn't affect the outer layers of skin or leave marks or discoloration. It is ideal for people who have tried other treatments, or who go to the gym but can't lose fat in specific areas like the waist. Our staff, trained by Cutera, gently glides a handpiece over the area and applies heat. Results start to show in just six weeks.</p>
-      <ol class="steps" aria-label="How it works">
-        <li><div><b>Heat reaches below the skin</b><span>Energy warms the fat cells under the surface.</span></div></li>
-        <li><div><b>Fat cells are destroyed</b><span>The temperature breaks down the targeted fat.</span></div></li>
-        <li><div><b>Your body clears them</b><span>The lymphatic system naturally eliminates them.</span></div></li>
-        <li><div><b>Gone for good</b><span>Treated fat cells are permanently removed.</span></div></li>
-      </ol>
-      <div class="planner">
-        <h3>Build your plan</h3>
-        <div class="zones" id="zones"></div>
-        <div class="plan">
-          <div><strong id="pz">2</strong><span>Areas selected</span></div>
-          <div><strong>2 to 3</strong><span>Sessions, every six weeks</span></div>
-          <div><strong>6 weeks</strong><span>To first visible results</span></div>
-        </div>
-        <div class="feel"><span>Slight warmth</span><span>Numbness</span><span>Tickling</span></div>
-      </div>
-      <p class="quote">“The weeks pass quickly. You start to see results in the mirror and your clothes feel looser.”</p>
-      <div><a class="btn solid" href="#contact" data-book="truSculpt">Book a truSculpt evaluation <span class="arr">→</span></a></div>
-    </div>
-  </div>
-</section>
+<section id="exclusive" class="exclusive">
+  <div class="pin">
+    <div class="label"><span data-es="Solo aquí en Puerto Rico">Only here in Puerto Rico</span><span class="bar"><i id="xbar"></i></span></div>
+    <div class="track" id="track">
 
-<section id="hair" class="sec hair">
-  <div class="wrap">
-    <div class="hair-hero rv">
-      <img src="img/s_hair.jpg" alt="Man with a full natural hairline after hair restoration" loading="lazy">
-      <div class="over"><b>SmartGraft®, only in Puerto Rico</b></div>
-    </div>
-    <div class="hair-grid">
-      <div class="rv">
-        <div class="head" style="margin-bottom:0">
-          <p class="kicker">Hair restoration</p>
-          <h2>Your natural hairline, <em>restored here.</em></h2>
-        </div>
-        <p class="lede" style="margin-top:22px">You no longer need to leave the Island for natural looking, permanent hair restoration. Dr. Latoni's Mayagüez office is the sole provider in Puerto Rico of SmartGraft®, combining technology and precision artistry to restore your hairline permanently, without a linear scar.</p>
-        <p class="lede">Before the procedure, a specialist evaluates you to confirm you're a good candidate. On the day, a hairline is designed to harmonize with your facial anatomy, then follicles from a donor area, usually the back of the head, are placed carefully and strategically. The FUE procedure is completed in one day under local anesthesia.</p>
-        <div class="cmp">
-          <div class="win">
-            <h3>SmartGraft® FUE</h3>
-            <div class="big">3 to 5<small>days downtime</small></div>
-            <ul><li>No incisions or stitches</li><li>No linear scar, ideal for short hair</li><li>No need to cover the area</li><li>Only the donor area is shaved</li></ul>
+      <article class="chap" id="trusculpt">
+        <div class="pic"><img src="img/s_trusculpt.jpg" alt="truSculpt treatment on the abdomen" loading="lazy"></div>
+        <div class="body">
+          <p class="only" data-es="El único en Puerto Rico">The only one in Puerto Rico</p>
+          <h2>tru<em>Sculpt</em></h2>
+          <p data-es="Una nueva figura en unos tres meses para hombres y mujeres, sin agujas, sin moretones, sin incisiones y sin cirugía. El calor llega a la grasa debajo de la piel, la destruye y el sistema linfático la elimina para siempre, sin afectar las capas externas ni dejar marcas. Nuestro personal está adiestrado por Cutera.">A new figure in about three months for men and women, with no needles, bruising, incisions or surgery. Heat reaches the fat under the skin, destroys it, and the lymphatic system removes it for good, without affecting the outer layers or leaving marks. Our staff is trained by Cutera.</p>
+          <div class="mini">
+            <div><b data-es="6 semanas">6 weeks</b><span data-es="para ver resultados">to visible results</span></div>
+            <div><b data-es="2 a 3">2 to 3</b><span data-es="sesiones, cada seis semanas">sessions, every six weeks</span></div>
           </div>
-          <div>
-            <h3>Traditional strip</h3>
-            <div class="big">6<small>weeks recovery</small></div>
-            <ul><li>A section of scalp is removed</li><li>Requires stitches</li><li>Leaves a visible scar</li><li>More invasive healing</li></ul>
-          </div>
+          <div class="zones" id="zones" aria-label="Areas"></div>
+          <p class="note" id="znote"></p>
+          <div><a class="btn sky" href="#contact" data-book="truSculpt" data-es="Evalúate para truSculpt">Book a truSculpt evaluation</a></div>
         </div>
-      </div>
-      <div class="faq rv" id="faq"></div>
+      </article>
+
+      <article class="chap" id="hair">
+        <div class="pic"><img src="img/s_hair.jpg" alt="Man with a full natural hairline" loading="lazy"></div>
+        <div class="body">
+          <p class="only" data-es="Únicos proveedores en Puerto Rico">Sole provider in Puerto Rico</p>
+          <h2>Smart<em>Graft®</em></h2>
+          <p data-es="Ya no tienes que salir de la Isla para un trasplante de cabello natural y permanente. En la oficina de Mayagüez, el método FUE recupera tu línea de cabello sin cicatriz lineal, en un solo día y con anestesia local. Se diseña una línea que armoniza con tu rostro y se colocan uno a uno los folículos del área donante.">You no longer need to leave the Island for natural, permanent hair restoration. At the Mayagüez office, the FUE method restores your hairline without a linear scar, in a single day under local anesthesia. A hairline is designed to suit your face and follicles from the donor area are placed one by one.</p>
+          <div class="vs">
+            <div class="win"><b data-es="3 a 5">3 to 5</b><span data-es="días de recuperación con FUE, sin puntos">days downtime with FUE, no stitches</span></div>
+            <div><b>6</b><span data-es="semanas con el método tradicional, con cicatriz">weeks with the traditional strip, with a scar</span></div>
+          </div>
+          <div><a class="btn sky" href="#contact" data-book="SmartGraft® Hair Restoration" data-es="Pregunta por SmartGraft">Ask about SmartGraft</a></div>
+        </div>
+      </article>
+
+      <article class="chap" id="skin">
+        <div class="pic"><img src="img/s_uvb.jpg" alt="Patient beside a Narrow Band UVB phototherapy panel" loading="lazy"></div>
+        <div class="body">
+          <p class="only" data-es="Único de Arecibo a Ponce">Unique from Arecibo to Ponce</p>
+          <h2 data-es="Vitiligo y <em>psoriasis</em>">Vitiligo &amp; <em>Psoriasis</em></h2>
+          <p data-es="Nuestra terapia Narrow Band UVB emite una luz de onda muy baja que ayuda a reducir las áreas blancas del vitiligo. Esta lámpara especializada también trata la psoriasis, la dermatitis atópica y otras condiciones que responden a la luz ultravioleta. Servicios ofrecidos por el Dr. Rogelio Mercado, MD.">Our Narrow Band UVB therapy emits a very narrow band of light that helps reduce the white patches of vitiligo. This specialized lamp also treats psoriasis, atopic dermatitis and other conditions that respond to ultraviolet light. Services provided by Dr. Rogelio Mercado, MD.</p>
+          <div class="spec"><div class="bar"><i></i></div><div class="lbl"><span>UVB 311 nm</span><span data-es="Luz visible">Visible light</span><span>700 nm</span></div></div>
+          <div><a class="btn sky" href="#contact" data-book="Narrow Band UVB" data-es="Pregunta por la fototerapia">Ask about phototherapy</a></div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
 
-<section id="skin" class="sec">
-  <div class="wrap uvb">
-    <div class="media rv"><img src="img/s_uvb.jpg" alt="Patient beside a Narrow Band UVB phototherapy panel" loading="lazy"></div>
-    <div class="copy rv">
-      <span class="badge">Unique from Arecibo to Ponce</span>
-      <h2>Vitiligo &amp; Psoriasis. <em class="sky">Light that heals.</em></h2>
-      <p class="lede">Our Narrow Band UVB therapy emits a very narrow band of ultraviolet light that helps reduce the white patches of vitiligo. After completing the sessions your condition needs, you'll feel more confident and secure.</p>
-      <p style="color:var(--slate)">This specialized fluorescent lamp also treats psoriasis, atopic dermatitis and other skin conditions that respond to ultraviolet light. These services are provided by Dr. Rogelio Mercado, MD.</p>
-      <div class="spectrum" aria-label="Narrow Band UVB works near 311 nanometers">
-        <div class="bar"><i></i></div>
-        <div class="lbl"><span>UVB 311 nm</span><span>Visible light</span><span>700 nm</span></div>
-      </div>
-      <div><a class="btn line" href="#contact" data-book="Narrow Band UVB">Ask about phototherapy <span class="arr">→</span></a></div>
-    </div>
+<section class="qa pad" style="max-width:1400px;margin:0 auto" aria-label="Hair restoration questions">
+  <h2 class="rv" data-es="Preguntas sobre <em>SmartGraft</em>">Questions about <em>SmartGraft</em></h2>
+  <div id="faq"></div>
+</section>
+
+<section id="team" class="team">
+  <img src="img/team.jpg" alt="Dr. Latoni with his clinical team" loading="lazy">
+  <div class="cap pad">
+    <h2 data-es="Un equipo que te cuida en cada paso.">A team that cares at every step.</h2>
+    <p data-es="Desde tu primera consulta hasta tu última visita de seguimiento, nuestro personal te acompaña con apoyo, sensibilidad y experiencia.">From your first consultation to your final follow up, our staff guides you with support, sensitivity and expertise.</p>
   </div>
 </section>
 
-<section id="team" class="sec team" style="padding-top:0">
-  <div class="wrap rv">
-    <figure>
-      <img src="img/team.jpg" alt="Dr. Latoni with his clinical team" loading="lazy">
-    </figure>
-    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px 32px;padding-top:22px;align-items:baseline">
-      <b style="font-family:var(--display);font-weight:400;font-size:clamp(26px,3vw,38px)">A team that cares at every step.</b>
-      <span style="color:var(--slate);max-width:52ch">From your first consultation to your final follow up, our staff guides you with support, sensitivity and expertise.</span>
+<section id="contact" class="contact pad">
+  <p class="eyebrow rv" data-es="Contáctanos">Contact us</p>
+  <h2 class="rv" data-es="Tu consulta <em>empieza aquí.</em>">Your consultation <em>starts here.</em></h2>
+  <div class="phones rv"><a href="tel:+17878311000">(787) 831 1000</a><a href="tel:+17878311012">(787) 831 1012</a></div>
+  <p class="hours rv" data-es="Horario con cita, siempre · Lunes a viernes, 9:00 a. m. a 5:00 p. m.">Office hours by appointment only · Monday to Friday, 9 AM to 5 PM</p>
+  <div class="offices">
+    <div class="office rv">
+      <iframe title="Mayagüez office map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Doctor%27s%20Center%20Calle%20Nelson%20Perea%20Mayaguez%20Puerto%20Rico&output=embed"></iframe>
+      <div class="in"><h3>Mayagüez</h3><address data-es="Calle Nelson Perea Norte #27 S 105<br>Doctor's Center, Mayagüez, PR 00680">27 S 105 Nelson Perea Street North<br>Doctor's Center, Mayagüez, PR 00680</address><a class="link" href="https://www.google.com/maps/search/?api=1&query=Doctor%27s+Center+Nelson+Perea+Mayaguez+PR" target="_blank" rel="noopener" data-es="Cómo llegar">Directions</a></div>
+    </div>
+    <div class="office rv">
+      <iframe title="Aguadilla office map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Carr%20107%20%23160%20Aguadilla%20PR%2000603&output=embed"></iframe>
+      <div class="in"><h3>Aguadilla</h3><address data-es="Carretera 107 #160<br>Aguadilla, PR 00603">Highway 107, #160<br>Aguadilla, PR 00603</address><a class="link" href="https://www.google.com/maps/search/?api=1&query=Carretera+107+160+Aguadilla+PR+00603" target="_blank" rel="noopener" data-es="Cómo llegar">Directions</a></div>
     </div>
   </div>
-</section>
 
-<section id="contact" class="sec contact">
-  <div class="wrap">
-    <div class="head rv">
-      <p class="kicker">Contact us</p>
-      <h2>Your consultation <em>starts here.</em></h2>
+  <form class="form" id="form" novalidate>
+    <h3 data-es="Solicita una cita">Request an appointment</h3>
+    <p class="sub" data-es="Dinos qué te interesa y nuestro equipo te llamará para coordinar tu cita.">Tell us what you're interested in and our team will call you to schedule.</p>
+    <div class="f2">
+      <label class="fl" for="f-name"><span data-es="Nombre completo">Full name</span><input id="f-name" autocomplete="name" required></label>
+      <label class="fl" for="f-phone"><span data-es="Teléfono">Phone</span><input id="f-phone" type="tel" autocomplete="tel" required></label>
     </div>
-    <div class="ct">
-      <div class="rv" style="min-width:0">
-        <div class="phones"><a href="tel:+17878311000">(787) 831 1000</a><a href="tel:+17878311012">(787) 831 1012</a></div>
-        <div class="hours"><b>Office hours by appointment only</b><span>Monday to Friday, 9 AM to 5 PM</span></div>
-        <div class="locs">
-          <div class="loc">
-            <iframe title="Map of the Mayagüez office" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Doctor%27s%20Center%20Calle%20Nelson%20Perea%20Mayaguez%20Puerto%20Rico&output=embed"></iframe>
-            <div class="in2"><h3>Mayagüez</h3><address>27 S 105 Nelson Perea Street North<br>Doctor's Center, Mayagüez, PR 00680</address><a href="https://www.google.com/maps/search/?api=1&query=Doctor%27s+Center+Nelson+Perea+Mayaguez+PR" target="_blank" rel="noopener">Directions ↗</a></div>
-          </div>
-          <div class="loc">
-            <iframe title="Map of the Aguadilla office" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Carr%20107%20%23160%20Aguadilla%20PR%2000603&output=embed"></iframe>
-            <div class="in2"><h3>Aguadilla</h3><address>Highway 107, #160<br>Aguadilla, PR 00603</address><a href="https://www.google.com/maps/search/?api=1&query=Carretera+107+160+Aguadilla+PR+00603" target="_blank" rel="noopener">Directions ↗</a></div>
-          </div>
-        </div>
-      </div>
-      <form id="form" class="rv" novalidate>
-        <h3>Request an appointment</h3>
-        <p class="sub">Tell us what you're interested in and our team will call you to schedule.</p>
-        <div class="row">
-          <label for="f-name">Full name<input id="f-name" autocomplete="name" required></label>
-          <label for="f-phone">Phone<input id="f-phone" type="tel" autocomplete="tel" required></label>
-        </div>
-        <label for="f-email">Email<input id="f-email" type="email" autocomplete="email"></label>
-        <label for="f-proc">I'm interested in<select id="f-proc"></select></label>
-        <div style="display:grid;gap:7px"><span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--slate)">Preferred office</span>
-          <div class="seg"><label for="f-may"><input type="radio" id="f-may" name="office" value="Mayagüez" checked>Mayagüez</label><label for="f-agu"><input type="radio" id="f-agu" name="office" value="Aguadilla">Aguadilla</label></div>
-        </div>
-        <label for="f-msg">Message<textarea id="f-msg" placeholder="What would you like to achieve?"></textarea></label>
-        <button class="btn solid" type="submit" style="justify-self:start">Send request <span class="arr">→</span></button>
-        <p class="ok" id="ok" hidden></p>
-      </form>
+    <div class="f2">
+      <label class="fl" for="f-email"><span data-es="Correo electrónico">Email</span><input id="f-email" type="email" autocomplete="email"></label>
+      <label class="fl" for="f-proc"><span data-es="Me interesa">I'm interested in</span><select id="f-proc"></select></label>
     </div>
-  </div>
+    <div class="fl"><span data-es="Oficina preferida">Preferred office</span>
+      <div class="opts"><label for="f-may"><input type="radio" id="f-may" name="office" value="Mayagüez" checked>Mayagüez</label><label for="f-agu"><input type="radio" id="f-agu" name="office" value="Aguadilla">Aguadilla</label></div>
+    </div>
+    <label class="fl" for="f-msg"><span data-es="Mensaje">Message</span><textarea id="f-msg"></textarea></label>
+    <button class="btn dark send" type="submit" data-es="Enviar solicitud">Send request</button>
+    <p class="ok" id="ok" hidden></p>
+  </form>
 </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div style="display:grid;gap:18px">
-      <a class="flogo" href="#top"><img src="img/logo_full.png" alt="Dr. Jorge D. Latoni M.D., F.A.C.S. Plastic Surgery" width="1400" height="954" loading="lazy"></a>
-      <p style="max-width:34ch">Dr. Jorge D. Latoni, MD, FACS. Board certified plastic surgeon serving the west of Puerto Rico.</p>
-    </div>
-    <div><h4>Explore</h4><ul><li><a href="#doctor">Dr. Latoni</a></li><li><a href="#treatments">Treatments</a></li><li><a href="#trusculpt">truSculpt</a></li><li><a href="#hair">Hair Restoration</a></li><li><a href="#skin">Vitiligo &amp; Psoriasis</a></li></ul></div>
-    <div><h4>Call</h4><ul><li><a href="tel:+17878311000">(787) 831 1000</a></li><li><a href="tel:+17878311012">(787) 831 1012</a></li><li>Mon to Fri, 9 AM to 5 PM</li><li>By appointment only</li></ul></div>
-    <div><h4>Visit</h4><ul><li>Doctor's Center, Mayagüez</li><li>Highway 107 #160, Aguadilla</li><li><a href="https://www.facebook.com/Latoni-Mercado-Plastic-Surgery-and-Dermatology-754230161371528/" target="_blank" rel="noopener" style="display:inline-flex;gap:8px;align-items:center"><span style="display:inline-flex;width:18px;height:18px"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21h3z"/></svg></span>Facebook ↗</a></li></ul></div>
-    <div class="legal"><span>© 2026 Latoni Plastic Surgery &amp; Dermatology. All rights reserved.</span><span>Individual results may vary. A consultation is required to determine candidacy.</span></div>
-  </div>
+<footer class="pad" style="margin-left:var(--rail)">
+  <img class="flogo" src="img/logo_full.png" alt="Dr. Jorge D. Latoni M.D., F.A.C.S. Plastic Surgery" width="1400" height="954" loading="lazy">
+  <nav>
+    <a href="#doctor">Dr. Latoni</a><a href="#treatments" data-es="Tratamientos">Treatments</a><a href="#trusculpt">truSculpt</a><a href="#hair">SmartGraft®</a><a href="#skin" data-es="Vitiligo y psoriasis">Vitiligo &amp; Psoriasis</a><a href="https://www.facebook.com/Latoni-Mercado-Plastic-Surgery-and-Dermatology-754230161371528/" target="_blank" rel="noopener">Facebook</a>
+  </nav>
+  <small data-es="© 2026 Latoni Plastic Surgery &amp; Dermatology. Los resultados pueden variar; se requiere una consulta para determinar si eres candidato.">© 2026 Latoni Plastic Surgery &amp; Dermatology. Individual results may vary; a consultation is required to determine candidacy.</small>
 </footer>
 
-<a class="btn sky fab" id="fab" href="#contact">Book now <span class="arr">→</span></a>
+<div class="peek" id="peek" aria-hidden="true"><img alt=""></div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Treatment details">
+  <button class="x" id="dx" aria-label="Close">×</button>
+  <div id="dbody"></div>
+</aside>
 
-<dialog id="dlg">
-  <div class="dlg" id="dlgBody"></div>
-  <button class="x" id="dlgX" aria-label="Close">×</button>
-</dialog>
-<script src="i18n.js"></script>
-<script>
-document.documentElement.classList.add("js");
-const T = {
- Surgery: [
-  ["Breast Augmentation","Breast","p_augmentation","This cosmetic procedure increases natural breast size and restores volume lost over the years or after pregnancy. Choose silicone gel or saline implants, and during your orientation select from brands such as Mentor, Sientra or Natrelle.",[["Surgery","About 1 hour"],["Recovery","About 2 weeks"],["Implants","Silicone or saline"]]],
-  ["Mastopexy","Breast","p_mastopexy","A breast lift, with or without implants, that rejuvenates your figure by tightening and reshaping the breast contour and reducing enlarged areolas, without increasing bust size.",[["Surgery","About 2 hours"],["Implants","Optional"]]],
-  ["Breast Reduction","Breast","p_reduction","We remove excess fat, tissue and skin to reduce breast size based on your goals. The breast is lifted and, if needed, the areola reduced. It can help relieve back, neck and shoulder pain.",[["Surgery","About 2 hours"],["Insurance","May be covered"]]],
-  ["Breast Cancer Reconstruction","Breast","p_reconstruction","Reconstructive surgery after a mastectomy or a lesion, using the same implant options as augmentation. From the very first consultation we offer support and compassionate care to guide you through each stage.",[["Implants","Gel, silicone or saline"],["Insurance","May be covered"]]],
-  ["Gynecomastia","Breast","p_gynecomastia","A favorite among men. It eliminates excess breast tissue and fat, reduces the areola and defines the chest lines for a more masculine appearance.",[["For","Men"]]],
-  ["Abdominoplasty","Body","p_abdominoplasty","The most comprehensive procedure for the abdomen. It removes excess skin and fat with liposuction, improves the shape of the navel, tightens the abdominal wall and rejuvenates the mons area.",[["Surgery","About 3 hours"],["Stay","One night recommended"]]],
-  ["Mini Abdominoplasty","Body","p_miniabdominoplasty","After pregnancy, major weight loss or with age, the skin of the lower abdomen can sag. We remove the excess below the navel and, if necessary, restore firmness to the abdominal muscles.",[["Area","Below the navel"]]],
-  ["Liposuction","Body","p_liposuction","Suction that refines your silhouette by reducing fat in the thighs, hips, buttocks, abdomen, waist, arms, back, inner knees, chest and neck. We treat only the areas you need and can combine it with other procedures for a more dramatic change.",[["Areas","Up to 10 zones"],["Combines","With other procedures"]]],
-  ["Brazilian Butt Lift","Body","p_bbl","This popular procedure treats two areas at once. Fat removed from the waist is transferred to the buttocks, for a flatter stomach and smaller waist with fuller, firmer, more shapely glutes.",[["Areas","Waist and glutes"],["Technique","Your own fat"]]],
-  ["Brachioplasty","Body","p_brachioplasty","Commonly known as an arm lift, it reshapes the underside of the upper arms when they sag and lose shape due to age, genetics or significant weight loss.",[["Area","Upper arms"]]],
-  ["Face Lift","Face","p_facelift","It reduces the physical signs of aging in your face and neck without changing your original appearance. You'll look rejuvenated and relaxed, and it can be combined with other procedures.",[["Result","Rested, natural"],["Combines","Neck and brow lift"]]],
-  ["Neck Lift","Face","p_necklift","Eliminates a double chin and excess skin or fat in the neck and jawline, improving the contour. It can be combined with a face lift and other rejuvenating procedures.",[["Area","Neck and jawline"]]],
-  ["Brow Lift","Face","p_browlift","Reduces wrinkles and frown lines that make you look tired or worried. Raising sagging brows to a naturally alert position gives you a more youthful look.",[["Result","Brighter, alert eyes"]]],
-  ["Blepharoplasty","Face","p_blepharoplasty","On the upper lid we remove excess tissue that can affect peripheral vision, so the eyes look larger and more alert. On the lower lid we remove the bags that make you look tired.",[["Areas","Upper and lower lids"]]],
-  ["Rhinoplasty","Face","p_rhinoplasty","Commonly called a nose job, it can restore breathing function and refine the tip, bridge and nostril width of the nose.",[["Goals","Form and function"]]],
-  ["Chin Augmentation","Face","p_chin","Reshapes or enhances the size of the chin to balance the jawline. It can be combined with rhinoplasty for naturally proportionate features.",[["Combines","With rhinoplasty"]]],
-  ["Otoplasty","Face","p_otoplasty","Cosmetic ear surgery that reshapes, repositions or pins back the outer ear to correct congenital deformities or trauma, for more natural proportions.",[["Area","Outer ear"]]],
-  ["Earlobe Repair","Face","p_earlobe","A simple, effective surgery that reshapes, resizes or repairs earlobes torn or stretched by heavy jewelry, gauges or trauma.",[["Also called","Lobuloplasty"]]],
-  ["Facial Fat Injections","Face","p_fatinjection","Your own body fat restores facial volume and softens wrinkles and creases for a naturally smoother look. Minimal scarring is usually unnoticeable, and excess tissue is removed only when necessary.",[["Source","Your own fat"]]],
-  ["Skin Cancer","Skin","p_skincancer","We understand the concerns of patients facing this disease. We offer genuine support at every phase, use techniques that protect your health, and our greatest satisfaction is removing the disease with minimal impact on your appearance.",[["Focus","Health and appearance"]]]
- ],
- Injectables: [
-  ["Botox","Neuromodulators","i_botox","A medicine containing botulinum toxin type A is injected to relax facial muscles and smooth expression lines for temporary rejuvenation.",[["Type","Neuromodulator"]]],
-  ["Dysport","Neuromodulators","i_dysport","A neuromodulator that temporarily diminishes wrinkles. Return for touch ups as needed to keep a relaxed, refreshed look.",[["Touch ups","Every 3 to 6 months"]]],
-  ["Xeomin","Neuromodulators","i_xeomin","The fight against wrinkles has many allies. This prescription medication with botulinum toxin type A temporarily improves frown lines and smooths the skin for a refreshed look.",[["Type","Neuromodulator"]]],
-  ["Fillers","Fillers","i_fillers","Hyaluronic acid facial fillers are recommended to treat scars and expression lines.",[["Base","Hyaluronic acid"]]],
-  ["Juvéderm","Fillers","i_juvederm","Another hyaluronic acid facial filler to treat scars and expression lines. We recommend the best treatment for your condition, age and goals.",[["Base","Hyaluronic acid"]]],
-  ["Volbella","Fillers","i_volbella","The ideal filler for fuller, natural looking lips. It also softens wrinkles and marionette lines around the mouth.",[["Area","Lips and mouth"]]],
-  ["Voluma","Fillers","i_voluma","Restores cheek volume lost with age and adds firmness for a more youthful appearance.",[["Area","Cheeks"]]],
-  ["Restylane Lyft","Fillers","i_restylane","Enhances cheek definition and corrects contour lines in people over 21, without affecting their natural look.",[["Area","Cheeks"],["Age","Over 21"]]],
-  ["Sculptra","Collagen","i_sculptra","A synthetic, nontoxic, biodegradable filler that stimulates your body to generate collagen for younger looking skin. It has been in use for more than 40 years.",[["Works by","Building collagen"],["In use","40+ years"]]],
-  ["Radiesse Hands","Collagen","i_radiesse","This treatment helps restore the youthful appearance of your hands.",[["Area","Hands"]]],
-  ["Sclerotherapy","Veins","i_sclerotherapy","Improve the appearance of your legs by eliminating spider and varicose veins. We offer Asclera, an FDA approved option.",[["Product","Asclera"]]]
- ],
- Aesthetics: [
-  ["Facials","Skin care","a_facials","A thorough cleansing removes impurities, pollution and oils that block pores. Facials help protect and prolong healthy skin, extending the results of your cosmetic treatments.",[["Benefit","Longer lasting results"]]],
-  ["Blue Peel","Skin care","a_bluepeel","Our specialists use the highest quality products to remove dead layers of skin and reveal a healthier, more youthful you.",[["Result","Renewed skin"]]],
-  ["Microdermabrasion","Skin care","a_microdermabrasion","A minimally invasive tool removes layers of skin to improve uneven pigmentation and sun damage and reduce the appearance of stretch marks.",[["Targets","Tone, texture, stretch marks"]]],
-  ["IPL","Light","a_ipl","Light technology removes unwanted facial and body hair and skin discoloration. Treatments take place in a specially equipped room with trained professionals who protect your health and appearance.",[["Treats","Hair and pigmentation"]]],
-  ["Obagi","Products","a_obagi","Every person's skin is different and needs a customized approach. We offer this line of professional products to keep your skin refreshed and young looking.",[["Type","Medical skincare"]]],
-  ["DerMend","Products","a_dermend","For aging skin, DerMend treatments restore, rejuvenate and maintain a more youthful complexion.",[["For","Mature skin"]]]
- ]
-};
-const FAQ=[
- ["What is a FUE transplant?","The globally recognized FUE (Follicular Unit Extraction) method is the most advanced and least invasive follicle transplant technique available. It's done without incisions or stitches to avoid scarring, reduce discomfort and speed healing. Dr. Latoni acquired this technology so his patients have a quicker, more precise and less invasive experience."],
- ["How does FUE compare to traditional methods?","Traditional transplants remove a section of the scalp, require stitches and a six week recovery. FUE uses specially designed instruments and techniques to avoid scarring. Patients return to their normal routine after three to five days, and there's no need to cover the treated area."],
- ["Who is an ideal candidate?","Most people experiencing hair loss are candidates. It's ideal for athletes and professionals who can't take a long recovery, the preferred option for people with short hairstyles, and it can also hide scarring from a previous transplant."],
- ["Are the results different from a linear transplant?","The end results are very similar, without the scarring of the more invasive surgery. The biggest difference is the number of people involved and their skill: using micro surgical tools, the specialist extracts and grafts each follicle by hand, with precision."],
- ["Can FUE be used for women and men?","Yes. The procedure adapts to the natural hair growth of both."],
- ["Do I need to shave my head?","No. On people with long hair, only the donor area is shaved."],
- ["How do I know if I'm a good candidate?","Book a consultation with Dr. Latoni at (787) 831 1000 or (787) 831 1012."]
-];
-
-const $=s=>document.querySelector(s);
-const ES=window.ES||null;
-let lang="en";
-try{const q=new URLSearchParams(location.search).get("lang");const sv=localStorage.getItem("latoni_lang");lang=q||sv||((navigator.language||"").toLowerCase().startsWith("es")?"es":"en");}catch(e){}
-if(!ES) lang="en";
-const es=()=>lang==="es";
-const catL=k=>es()?ES.cats[k]:k;
-const grpL=g=>es()?(ES.groups[g]||g):g;
-function item(k,i){const x=T[k][i];if(!es())return {n:x[0],d:x[3],s:x[4],g:x[1],img:x[2]};const y=ES.T[k][i];return {n:y[0],d:y[1],s:y[2],g:x[1],img:x[2]};}
-let cat="Surgery",grp="All";
-function idxs(){return T[cat].map((x,i)=>i).filter(i=>grp==="All"||T[cat][i][1]===grp);}
-function tabs(){
-  $("#tabs").innerHTML=Object.keys(T).map(k=>`<button class="tab" role="tab" aria-selected="${k===cat}" data-k="${k}">${catL(k)}<sup>${T[k].length}</sup></button>`).join("");
-  const g=["All",...new Set(T[cat].map(x=>x[1]))];
-  $("#chips").innerHTML=g.map(x=>`<button class="chip" aria-pressed="${x===grp}" data-g="${x}">${grpL(x)}</button>`).join("");
-}
-function grid(){
-  $("#grid").innerHTML=idxs().map((i,n)=>{const it=item(cat,i);return `<button class="card" data-n="${n}" style="animation-delay:${n*45}ms"><div class="ph"><img src="img/${it.img}.jpg" alt="${it.n}" loading="lazy"></div><div class="meta"><h3>${it.n}</h3><small>${grpL(it.g)}</small></div></button>`}).join("");
-}
-$("#tabs").onclick=e=>{const b=e.target.closest(".tab");if(!b)return;cat=b.dataset.k;grp="All";tabs();grid();};
-$("#chips").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;grp=b.dataset.g;tabs();grid();};
-const dlg=$("#dlg");
-function openItem(n){
-  const L=idxs(); if(n>=L.length) return; const it=item(cat,L[n]); const en=T[cat][L[n]][0];
-  const w=it.n.split(" "); const t=w.length>1?w.slice(0,-1).join(" ")+" <em class='sky'>"+w[w.length-1]+"</em>":"<em class='sky'>"+it.n+"</em>";
-  $("#dlgBody").innerHTML=`<div class="im"><img src="img/${it.img}.jpg" alt="${it.n}"></div><div class="tx"><p class="kicker">${catL(cat)} · ${grpL(it.g)}</p><h3>${t}</h3><p>${it.d}</p><dl class="specs">${it.s.map(s=>`<div><dt>${s[0]}</dt><dd>${s[1]}</dd></div>`).join("")}</dl><div class="nav2"><a class="btn solid" href="#contact" data-book="${en}">${es()?ES.ui.book:"Schedule a consultation"} <span class="arr">→</span></a>${n<L.length-1?`<button class="btn line" data-next="${n+1}">${es()?ES.ui.next:"Next"} <span class="arr">→</span></button>`:""}</div></div>`;
-  if(!dlg.open) dlg.showModal();
-}
-$("#grid").onclick=e=>{const b=e.target.closest(".card");if(b)openItem(+b.dataset.n);};
-dlg.addEventListener("click",e=>{
-  if(e.target===dlg){dlg.close();return;}
-  const n=e.target.closest("[data-next]"); if(n){openItem(+n.dataset.next);return;}
-  const a=e.target.closest("[data-book]"); if(a){dlg.close();}
-});
-$("#dlgX").onclick=()=>dlg.close();
-
-const sel=$("#f-proc");
-function fillSelect(){
-  const keep=sel.value;
-  sel.innerHTML=`<option value="">${es()?ES.ui.notsure:"Not sure yet, I'd like guidance"}</option>`+Object.keys(T).map(k=>`<optgroup label="${catL(k)}">${T[k].map((x,i)=>`<option value="${x[0]}">${item(k,i).n}</option>`).join("")}</optgroup>`).join("")+`<optgroup label="${es()?ES.ui.signature:"Signature"}"><option value="truSculpt">truSculpt</option><option value="SmartGraft® Hair Restoration">${es()?ES.ui.hair:"SmartGraft® Hair Restoration"}</option><option value="Narrow Band UVB">Narrow Band UVB</option></optgroup>`;
-  sel.value=keep;
-}
-document.addEventListener("click",e=>{const a=e.target.closest("[data-book]");if(a)sel.value=a.dataset.book;});
-
-function marquee(){const names=Object.keys(T).flatMap(k=>T[k].map((x,i)=>item(k,i).n)).concat(["truSculpt","SmartGraft®","Narrow Band UVB"]);const half=names.map(n=>`<span>${n}</span>`).join("");$("#mq").innerHTML=half+half;}
-
-const Z=["Abdomen","Waist","Buttocks","Thighs","Arms","Upper back","Neck"],on=new Set(["Abdomen","Waist"]);
-function rz(){$("#zones").innerHTML=Z.map(z=>`<button class="zone" aria-pressed="${on.has(z)}" data-z="${z}">${es()?ES.zones[z]:z}</button>`).join("");$("#pz").textContent=on.size;}
-$("#zones").onclick=e=>{const b=e.target.closest(".zone");if(!b)return;const z=b.dataset.z;on.has(z)?on.delete(z):on.add(z);rz();};
-
-function faq(){const F=es()?ES.FAQ:FAQ;$("#faq").innerHTML=F.map((f,i)=>`<details${i===0?" open":""}><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");}
-
-$("#form").addEventListener("submit",e=>{e.preventDefault();const n=$("#f-name").value.trim(),p=$("#f-phone").value.trim(),ok=$("#ok");ok.hidden=false;
-  if(!n||!p){ok.textContent=es()?ES.ui.missing:"Please add your name and phone number so our team can call you.";(n?$("#f-phone"):$("#f-name")).focus();return;}
-  const o=document.querySelector("input[name=office]:checked").value;
-  ok.textContent=es()?ES.ui.thanks(n.split(" ")[0],o):`Thank you, ${n.split(" ")[0]}. (Design preview: once the site is live, this request goes straight to the ${o} office.)`;});
-
-/* static text swap */
-const norm=s=>s.replace(/\s+/g," ").trim();
-const ORIG=new Map(); const EN_TITLE=document.title;
-function collect(){
-  if(!ES) return;
-  const skip="#tabs,#chips,#grid,#zones,#faq,#mq,#dlg,select,script,style";
-  document.querySelectorAll("body *").forEach(el=>{
-    if(el.closest(skip)) return;
-    if(ORIG.has(el)||[...ORIG.keys()].some(p=>p.contains(el))) return;
-    const k=norm(el.innerHTML);
-    if(ES.S[k]!==undefined) ORIG.set(el,{type:"html",en:el.innerHTML,es:ES.S[k]});
-  });
-  document.querySelectorAll("label").forEach(l=>{const t=[...l.childNodes].find(n=>n.nodeType===3&&n.textContent.trim());if(t&&ES.S[t.textContent.trim()])ORIG.set(t,{type:"text",en:t.textContent,es:ES.S[t.textContent.trim()]});});
-  document.querySelectorAll("form span").forEach(s=>{const k=norm(s.innerHTML);if(ES.S[k]&&!ORIG.has(s))ORIG.set(s,{type:"html",en:s.innerHTML,es:ES.S[k]});});
-}
-function applyLang(l){
-  lang=(l==="es"&&ES)?"es":"en";
-  try{localStorage.setItem("latoni_lang",lang);}catch(e){}
-  document.documentElement.lang=lang;
-  document.title=es()?ES.title:EN_TITLE;
-  ORIG.forEach((v,node)=>{const val=es()?v.es:v.en; if(v.type==="html") node.innerHTML=val; else node.textContent=val;});
-  const ta=$("#f-msg"); if(ta) ta.placeholder=es()?ES.ui.placeholder:"What would you like to achieve?";
-  document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===lang));
-  tabs();grid();fillSelect();marquee();rz();faq();
-}
-document.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>applyLang(b.dataset.lang)));
-collect(); applyLang(lang);
-
-const nav=$("#nav"),fab=$("#fab"),links=[...document.querySelectorAll(".menu a")],secs=links.map(a=>$(a.getAttribute("href")));
-function onS(){const y=scrollY;nav.classList.toggle("solid",y>40);fab.classList.toggle("show",y>innerHeight*.9&&$("#contact").getBoundingClientRect().top>innerHeight*.6);
-  let k=-1;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<150)k=i;});links.forEach((a,i)=>a.classList.toggle("on",i===k));}
-addEventListener("scroll",onS,{passive:true});onS();
-const dr=$("#drawer");$("#burger").onclick=()=>dr.classList.add("open");$("#close").onclick=()=>dr.classList.remove("open");dr.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>dr.classList.remove("open")));
-const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("vis");io.unobserve(en.target);}}),{rootMargin:"0px 0px -8% 0px"});
-document.querySelectorAll(".rv").forEach(el=>io.observe(el));
-const v=$("#heroVideo");if(matchMedia("(prefers-reduced-motion: reduce)").matches){v.removeAttribute("autoplay");v.pause();}
-</script>
+<script src="i18n.js?v=2"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>
